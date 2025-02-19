@@ -108,8 +108,8 @@ class Comment(Row):
 
 class Statement(list):
     """A Statement is a list of cells, plus some metadata"""
-    startline=None
-    endline=None
+    startline = None
+    endline = None
 
     def is_setting(self):
         if ((len(self) > 1) and (re.match(r'\[.*?\]', self[1]))):

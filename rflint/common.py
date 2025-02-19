@@ -109,4 +109,3 @@ class GeneralRule(Rule):
     other child object)
     """
     pass
-    
