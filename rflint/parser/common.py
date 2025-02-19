@@ -1,6 +1,7 @@
 from __future__ import print_function
 import re
 
+
 class RobotStatements(object):
     def append(self, linenumber, raw_text, cells):
         """Add another row of data from a test suite"""
@@ -17,14 +18,14 @@ class RobotStatements(object):
         """Return a list of steps (statements that are not settings or comments)"""
         steps = []
         for statement in self.statements:
-            if ((not statement.is_comment()) and
-                (not statement.is_setting())):
-                steps.append(statement)
+        if ((not statement.is_comment()) and
+            (not statement.is_setting())):
+            steps.append(statement)
         return steps
 
     @property
     def settings(self):
-        """Return a list of settings (statements with cell[1] matching \[.*?\])
+        """Return a list of settings (statements with cell[1] matching \[.*?\]) # noqa: W605 
 
         Note: this returns any statement that *looks* like a setting. If you have
         a misspelled or completely bogus setting, it'll return that too
@@ -80,17 +81,23 @@ class Row(object):
 
     def dump(self):
         print("|" + " | ".join([cell.strip() for cell in self.cells]))
+
     def __len__(self):
         return len(self.cells)
+
     def __setitem__(self, key, value):
         self.cells[key] = value
         return self.cells[key]
+
     def __getitem__(self, key):
         return self.cells[key]
+
     def __repr__(self):
         return "<line: %s cells: %s>" % (self.linenumber, str(self.cells))
+        
     def __contains__(self, key):
         return key in self.cells
+
 
 class Comment(Row):
     # this isn't entirely correct or well thought out.
@@ -98,6 +105,7 @@ class Comment(Row):
     # throw them away (mainly so I can recreate the original
     # file from the parsed data)
     pass
+
 
 class Statement(list):
     """A Statement is a list of cells, plus some metadata"""

@@ -10,7 +10,7 @@ def normalize_name(string):
     return string.replace(" ", "").replace("_", "").lower()
 
 
-class Rule(object): 
+class Rule(object):
     # default severity; subclasses may override
     severity = WARNING
     output_format = "{severity}: {linenumber}, {char}: {message} ({rulename})"
@@ -32,7 +32,7 @@ class Rule(object):
         """Report an error or warning"""
         self.controller.report(linenumber=linenum, filename=obj.path,
                                severity=self.severity, message=message,
-                               rulename = self.__class__.__name__,
+                               rulename=self.__class__.__name__,
                                char=char_offset)
 
     @property
@@ -68,12 +68,14 @@ class Rule(object):
     def __repr__(self):
         return "%s %s" % (self.severity, self.__class__.__name__)
 
-class TestRule(Rule): 
-    """Rule that runs against test cases. 
+
+class TestRule(Rule):
+    """Rule that runs against test cases.
 
     The object that is passed in will be of type rflint.parser.Testcase
     """
     pass
+
 
 class ResourceRule(Rule):
     """Rule that runs against a resource file
@@ -81,19 +83,22 @@ class ResourceRule(Rule):
     The object that is passed in will be of type rflint.parser.ResourceFile
     """
 
-class SuiteRule(Rule): 
-    """Rule that runs against test cases. 
+
+class SuiteRule(Rule):
+    """Rule that runs against test cases.
 
     The object that is passed in will be of type rflint.parser.SuiteFile
     """
     pass
 
-class KeywordRule(Rule): 
+
+class KeywordRule(Rule):
     """Rule that runs against keywords
 
     The object that is passed in will be of type rflint.parser.Keyword
     """
     pass
+
 
 class GeneralRule(Rule):
     """Rule that requires a suite or resource file, but may apply to child objects
