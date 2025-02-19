@@ -108,4 +108,5 @@ class GeneralRule(Rule):
     to the suite (ie: you may iterate over tests, or keywords, or some
     other child object)
     """
-    pass    
+    pass
+    

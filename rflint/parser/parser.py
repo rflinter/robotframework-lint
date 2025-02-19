@@ -97,7 +97,7 @@ class SuiteFolder(object):
             if os.path.isdir(fullpath):
                 result.append(RobotFactory(fullpath, parent=self))
             else:
-                if ((name.endswith(".txt") or name.endswith(".robot")) 
+                if ((name.endswith(".txt") or name.endswith(".robot"))
                 and (name not in ("__init__.txt", "__init__.robot"))):
                     result.append(RobotFactory(fullpath, parent=self))
         return result
@@ -196,7 +196,7 @@ class RobotFile(object):
                     self.tables.append(current_table)
                 else:
                     current_table.append(Row(linenumber, raw_text, cells))
-                    
+
     def split_row(cls, row):
         """ function copied from
         https://github.com/robotframework/robotframework/blob/v3.1.2/src/robot/parsing/robotreader.py
