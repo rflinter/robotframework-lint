@@ -97,8 +97,8 @@ class SuiteFolder(object):
             if os.path.isdir(fullpath):
                 result.append(RobotFactory(fullpath, parent=self))
             else:
-                if ((name.endswith(".txt") or name.endswith(".robot")) and
-                (name not in ("__init__.txt", "__init__.robot"))):
+                if ((name.endswith(".txt") or name.endswith(".robot")) 
+                and (name not in ("__init__.txt", "__init__.robot"))):
                     result.append(RobotFactory(fullpath, parent=self))
         return result
 
@@ -173,7 +173,7 @@ class RobotFile(object):
             f.file.seek(0)
 
             matcher = Matcher(re.IGNORECASE)
-            for linenumber, raw_text in enumerate(f.readlines()):
+            for linenumber, raw_text in enumerate(f.readlines()) :
                 linenumber += 1;  # start counting at 1 rather than zero
                 # this mimics what the robot TSV reader does --
                 # it replaces non-breaking spaces with regular spaces,
@@ -196,20 +196,16 @@ class RobotFile(object):
                     self.tables.append(current_table)
                 else:
                     current_table.append(Row(linenumber, raw_text, cells))
-
-    def split_row(self, row):
+                    
+    def split_row(cls, row):
         """ function copied from
         https://github.com/robotframework/robotframework/blob/v3.1.2/src/robot/parsing/robotreader.py
         """
-        space_splitter = re.compile(u'[ \t\xa0]{2,}|\t+')
-        pipe_splitter = re.compile(u'[ \t\xa0]+\|(?=[ \t\xa0]+)')
-        pipe_starts = ('|', '| ', '|\t', u'|\xa0')
-        pipe_ends = (' |', '\t|', u'\xa0|')
-        if row[:2] in pipe_starts:
-            row = row[1:-1] if row[-2:] in pipe_ends else row[1:]
-            return [cell.strip()
-                    for cell in pipe_splitter.split(row)]
-        return space_splitter.split(row)
+        if row[:2] in cls._pipe_starts:
+            row = row[1:-1] if row[-2:] in cls._pipe_ends else row[1:]
+            return [cls._strip_whitespace(cell)
+                    for cell in cls._pipe_splitter.split(row)]
+        return cls._space_splitter.split(row)
 
     def __repr__(self):
         return "<RobotFile(%s)>" % self.path

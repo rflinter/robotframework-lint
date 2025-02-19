@@ -112,8 +112,7 @@ class Statement(list):
     endline = None
 
     def is_setting(self):
-        if ((len(self) > 1) and
-            (re.match(r'\[.*?\]', self[1]))):
+        if ((len(self) > 1) and (re.match(r'\[.*?\]', self[1]))):
             return True
         return False
 
@@ -134,4 +133,3 @@ class Statement(list):
 
     def __repr__(self):
         return "(%.4s-%.4s)%s" % (self.startline, self.endline, list.__repr__(self))
-
