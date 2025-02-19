@@ -18,9 +18,8 @@ class RobotStatements(object):
         """Return a list of steps (statements that are not settings or comments)"""
         steps = []
         for statement in self.statements:
-        if ((not statement.is_comment()) and
-            (not statement.is_setting())):
-            steps.append(statement)
+            if ((not statement.is_comment()) and (not statement.is_setting())):
+                steps.append(statement)
         return steps
 
     @property
@@ -94,7 +93,7 @@ class Row(object):
 
     def __repr__(self):
         return "<line: %s cells: %s>" % (self.linenumber, str(self.cells))
-        
+
     def __contains__(self, key):
         return key in self.cells
 
