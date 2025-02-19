@@ -6,7 +6,7 @@ from .parser import (
     Testcase,
     Keyword,
     Row,
-    TestcaseTable,  # nofaq: F401
-    KeywordTable    # nofaq: F401
+    TestcaseTable,
+    KeywordTable
   )  # nofaq: F401
 from .tables import DefaultTable, SettingTable, UnknownTable, VariableTable, MetadataTable, RobotTable  # noqa: F401
