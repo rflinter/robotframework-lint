@@ -27,7 +27,7 @@ from .util import timeit, Matcher
 from .tables import AbstractContainerTable, DefaultTable, SettingTable, VariableTable, UnknownTable
 from .testcase import Testcase
 from .rfkeyword import Keyword
-from .common import Row, Statement
+from .common import Row
 
 
 def RobotFactory(path, parent=None):
@@ -53,6 +53,7 @@ def RobotFactory(path, parent=None):
         rf.__class__ = ResourceFile
         return rf
 
+
 class SuiteFolder(object):
     def __init__(self, path, parent=None):
 
@@ -67,7 +68,6 @@ class SuiteFolder(object):
             if os.path.exists(os.path.join(self.path, filename)):
                 self.initfile = RobotFile(os.path.join(self.path, filename))
                 break
-
 
     def walk(self, *types):
         '''
@@ -98,8 +98,7 @@ class SuiteFolder(object):
                 result.append(RobotFactory(fullpath, parent=self))
             else:
                 if ((name.endswith(".txt") or name.endswith(".robot")) and
-                    (name not in ("__init__.txt", "__init__.robot"))):
-
+                (name not in ("__init__.txt", "__init__.robot"))):
                     result.append(RobotFactory(fullpath, parent=self))
         return result
 
@@ -175,8 +174,7 @@ class RobotFile(object):
 
             matcher = Matcher(re.IGNORECASE)
             for linenumber, raw_text in enumerate(f.readlines()):
-                linenumber += 1; # start counting at 1 rather than zero
-
+                linenumber += 1;  # start counting at 1 rather than zero
                 # this mimics what the robot TSV reader does --
                 # it replaces non-breaking spaces with regular spaces,
                 # and then strips trailing whitespace

@@ -24,7 +24,7 @@ class RobotStatements(object):
 
     @property
     def settings(self):
-        """Return a list of settings (statements with cell[1] matching \[.*?\]) # noqa: W605 
+        """Return a list of settings (statements with cell[1] matching \[.*?\]) # noqa: W605
 
         Note: this returns any statement that *looks* like a setting. If you have
         a misspelled or completely bogus setting, it'll return that too
@@ -134,3 +134,4 @@ class Statement(list):
 
     def __repr__(self):
         return "(%.4s-%.4s)%s" % (self.startline, self.endline, list.__repr__(self))
+
