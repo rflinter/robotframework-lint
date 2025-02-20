@@ -12,5 +12,5 @@ from .parser import (
 
 from .tables import DefaultTable, SettingTable, UnknownTable, VariableTable, MetadataTable, RobotTable 
 
-__all__ = (SuiteFolder,ResourceFile,SuiteFile,RobotFactory,Testcase,Keyword,Row,TestcaseTable,KeywordTable
+__all__ = (SuiteFolder,ResourceFile,SuiteFile,RobotFactory,Testcase,Keyword,Row,TestcaseTable,KeywordTable,
            DefaultTable, SettingTable, UnknownTable, VariableTable, MetadataTable, RobotTable)
