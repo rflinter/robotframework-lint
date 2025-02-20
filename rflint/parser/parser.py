@@ -1,8 +1,6 @@
 '''
-
 A custom robotframework parser that retains line numbers (though
 it doesn't (yet!) retain character positions for each cell)
-
 
 Note: this only works on pipe and space separated files. It uses a
 copy of the deprecated TxtReader robot parser to divide a line into cells.
@@ -14,8 +12,8 @@ admittedly I don't fully parse everything) it is about 3x-5x faster
 than the official robot parser. It can read a file with 500
 test cases and 500 keywords in about 30ms, compared to 150ms
 for the robot parser. Sweet.
-
 '''
+
 from __future__ import print_function
 
 import re
@@ -98,7 +96,7 @@ class SuiteFolder(object):
                 result.append(RobotFactory(fullpath, parent=self))
             else:
                 if ((name.endswith(".txt") or name.endswith(".robot"))
-                and (name not in ("__init__.txt", "__init__.robot"))):
+                    and (name not in ("__init__.txt", "__init__.robot"))):
                     result.append(RobotFactory(fullpath, parent=self))
         return result
 
@@ -173,8 +171,8 @@ class RobotFile(object):
             f.file.seek(0)
 
             matcher = Matcher(re.IGNORECASE)
-            for linenumber, raw_text in enumerate(f.readlines()) :
-                linenumber += 1;  # start counting at 1 rather than zero
+            for linenumber, raw_text in enumerate(f.readlines()):
+                linenumber += 1  # start counting at 1 rather than zero
                 # this mimics what the robot TSV reader does --
                 # it replaces non-breaking spaces with regular spaces,
                 # and then strips trailing whitespace
@@ -292,6 +290,7 @@ class SuiteFile(RobotFile):
                     if statement[0] != "":
                         yield statement
 
+
 class ResourceFile(RobotFile):
     def __repr__(self):
         return "<ResourceFile(%s)>" % self.path
@@ -304,11 +303,13 @@ class ResourceFile(RobotFile):
                 for statement in table.statements:
                     yield statement
 
+
 class TestcaseTable(AbstractContainerTable):
     _childClass = Testcase
     def __init__(self, parent, *args, **kwargs):
         super(TestcaseTable, self).__init__(parent, *args, **kwargs)
         self.testcases = self._children
+
 
 class KeywordTable(AbstractContainerTable):
     _childClass = Keyword
@@ -317,16 +318,12 @@ class KeywordTable(AbstractContainerTable):
         self.keywords = self._children
 
 @timeit
-def dump(suite):
-    result = []
+def dump(suite):    
     for table in suite.tables:
-#        print "table:", table
-#        for row in table.rows:
-#            print "=>", row
         if isinstance(table, TestcaseTable):
             for tc in table.testcases:
-                # force parsing of individual steps
-                steps = [step for step in tc.steps]
+                steps = [step for step in tc.steps]  # force parsing of individual steps
+
 
 if __name__ == "__main__":
     from robot.parsing import TestData, ResourceFile
