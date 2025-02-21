@@ -97,7 +97,7 @@ class SuiteFolder(object):
             else:
                 if (
                     (
-                        name.endswith(".txt") 
+                        name.endswith(".txt")
                         or name.endswith(".robot")
                         )
                     and (
@@ -299,6 +299,7 @@ class SuiteFile(RobotFile):
 
 
 class ResourceFile(RobotFile):
+
     def __repr__(self):
         return "<ResourceFile(%s)>" % self.path
 
@@ -313,6 +314,7 @@ class ResourceFile(RobotFile):
 
 class TestcaseTable(AbstractContainerTable):
     _childClass = Testcase
+
     def __init__(self, parent, *args, **kwargs):
         super(TestcaseTable, self).__init__(parent, *args, **kwargs)
         self.testcases = self._children
@@ -320,21 +322,22 @@ class TestcaseTable(AbstractContainerTable):
 
 class KeywordTable(AbstractContainerTable):
     _childClass = Keyword
+
     def __init__(self, parent, *args, **kwargs):
         super(KeywordTable, self).__init__(parent, *args, **kwargs)
         self.keywords = self._children
 
 @timeit
-def dump(suite):    
+def dump(suite):
     for table in suite.tables:
         if isinstance(table, TestcaseTable):
             for tc in table.testcases:
-                steps = [step for step in tc.steps]  # force parsing of individual steps
+                steps = [step for step in tc.steps]  # force parsing of individual steps -> nofaq: F841
 
 
 if __name__ == "__main__":
     from robot.parsing import TestData, ResourceFile
-    import sys
+    #import sys
 
     # parse with the robot parser and this parser, to
     # see which is faster. Of course, this parser will

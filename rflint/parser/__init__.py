@@ -8,9 +8,16 @@ from .parser import (
     Row,
     TestcaseTable,
     KeywordTable
-  )  # nofaq: F401
+    )
 
-from .tables import DefaultTable, SettingTable, UnknownTable, VariableTable, MetadataTable, RobotTable
+from .tables import (
+    DefaultTable,
+    SettingTable,
+    UnknownTable,
+    VariableTable,
+    MetadataTable,
+    RobotTable
+    )
 
 __all__ = (
            SuiteFolder,
