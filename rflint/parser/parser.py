@@ -327,6 +327,7 @@ class KeywordTable(AbstractContainerTable):
         super(KeywordTable, self).__init__(parent, *args, **kwargs)
         self.keywords = self._children
 
+
 @timeit
 def dump(suite):
     for table in suite.tables:
@@ -337,7 +338,7 @@ def dump(suite):
 
 if __name__ == "__main__":
     from robot.parsing import TestData, ResourceFile
-    #import sys
+    # import sys
 
     # parse with the robot parser and this parser, to
     # see which is faster. Of course, this parser will

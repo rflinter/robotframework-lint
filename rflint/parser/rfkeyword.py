@@ -1,6 +1,7 @@
-# Does this need to be in its own file, or can I combine 
-# testcase and keyword into one file? 
+# Does this need to be in its own file, or can I combine
+# testcase and keyword into one file?
 from .common import RobotStatements
+
 
 class Keyword(RobotStatements):
     '''A robotframework keyword
@@ -19,4 +20,3 @@ class Keyword(RobotStatements):
     def __repr__(self):
         # should this return the fully qualified name?
         return "<Keyword: %s>" % self.name
-
