@@ -92,9 +92,11 @@ class VariableTable(RobotTable):
 class MetadataTable(RobotTable):
     pass
 
+
 class AbstractContainerTable(RobotTable):
     '''Parent class of Keyword and Testcase tables'''
     _childClass = None
+
     def __init__(self, parent, *args, **kwargs):
         if self._childClass is None:
             # hey! Don't try to instantiate this class directly.
@@ -110,7 +112,7 @@ class AbstractContainerTable(RobotTable):
                 row.dump()
 
     def append(self, row):
-        ''' 
+        '''
         The idea is, we recognize when we have a new testcase by
         checking the first cell. If it's not empty and not a comment,
         we have a new test case.
@@ -120,8 +122,9 @@ class AbstractContainerTable(RobotTable):
             # blank line. Should we throw it away, or append a BlankLine object?
             return
 
-        if (row[0] != "" and
-            (not row[0].lstrip().startswith("#"))):
+        if (row[0] != ""
+            and (not row[0].lstrip().startswith("#"))
+            ):
             # we have a new child table
             self._children.append(self._childClass(self.parent, row.linenumber, row[0]))
             if len(row.cells) > 1:

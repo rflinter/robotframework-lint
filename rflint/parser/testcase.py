@@ -1,6 +1,5 @@
 from .tables import SettingTable
-from .common import Row, Statement, RobotStatements
-import re
+from .common import RobotStatements
 
 
 class Testcase(RobotStatements):
