@@ -95,8 +95,15 @@ class SuiteFolder(object):
             if os.path.isdir(fullpath):
                 result.append(RobotFactory(fullpath, parent=self))
             else:
-                if ((name.endswith(".txt") or name.endswith(".robot"))
-                    and (name not in ("__init__.txt", "__init__.robot"))):
+                if (
+                    (
+                        name.endswith(".txt") 
+                        or name.endswith(".robot")
+                        )
+                    and (
+                        name not in ("__init__.txt", "__init__.robot")
+                        )
+                ):
                     result.append(RobotFactory(fullpath, parent=self))
         return result
 
