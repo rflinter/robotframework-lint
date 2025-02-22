@@ -250,7 +250,7 @@ class RfLint(object):
             prog="python -m rflint",
             description="A static analyzer for robot framework plain text files.",
             formatter_class=argparse.RawDescriptionHelpFormatter,
-            epilog= (
+            epilog=(
                 "You can use 'all' in place of RULENAME to refer to all rules. \n"
                 "\n"
                 "For example: '--ignore all --warn DuplicateTestNames' will ignore all\n"
@@ -334,11 +334,9 @@ class ConfigureAction(argparse.Action):
 class SetStatusAction(argparse.Action):
     """Abstract class which provides a method for checking the rule name"""
     def check_rule_name(self, rulename, rules):
-        if (rulename != "all" 
-        and rulename.lower() not in [rule.name.lower() for rule in rules]
-        ):
+        if (rulename != "all"
+                and rulename.lower() not in [rule.name.lower() for rule in rules]):
             raise UnknownRuleException(rulename)
-
 
 class SetWarningAction(SetStatusAction):
     """Called when the argument parser encounters --warning"""
@@ -346,8 +344,8 @@ class SetWarningAction(SetStatusAction):
         app=getattr(namespace, "app")
         self.check_rule_name(rulename, app.all_rules)
         for rule in app.all_rules:
-            if rulename == rule.name or rulename == "all":
-                rule.severity = WARNING
+            if rulename==rule.name or rulename=="all":
+                rule.severity=WARNING
 
 
 class SetErrorAction(SetStatusAction):
@@ -358,8 +356,8 @@ class SetErrorAction(SetStatusAction):
         self.check_rule_name(rulename, app.all_rules)
 
         for rule in app.all_rules:
-            if rulename == rule.name or rulename == "all":
-                rule.severity = ERROR
+            if rulename==rule.name or rulename=="all":
+                rule.severity=ERROR
 
 
 class SetIgnoreAction(SetStatusAction):
@@ -368,13 +366,13 @@ class SetIgnoreAction(SetStatusAction):
         app=getattr(namespace, "app")
         self.check_rule_name(rulename, app.all_rules)
         for rule in app.all_rules:
-            if rulename == rule.name or rulename == "all":
-                rule.severity = IGNORE
+            if rulename==rule.name or rulename=="all":
+                rule.severity=IGNORE
 
 
 class ArgfileLoader(argparse.Action):
     """Called when the argument parser encounters --argumentfile"""
     def __call__ (self, parser, namespace, values, option_string = None):
-        ap = ArgFileParser(["--argumentfile","-A"])
-        args = ap.process(["-A", values])
+        ap=ArgFileParser(["--argumentfile","-A"])
+        args=ap.process(["-A", values])
         parser.parse_args(args, namespace)
