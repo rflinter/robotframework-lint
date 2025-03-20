@@ -155,4 +155,4 @@
 | | ${result}= | Run process
 | | ... | ${python} | -m | robot.tidy | ${SUITE_SOURCE} | ${outfile}
 | | log | saving file as ${outfile} | DEBUG
-| | [return] | ${result}
+| | RETURN | ${result}
