@@ -8,7 +8,7 @@ exec(compile(open(filename, 'rb').read(), filename, 'exec'))
 
 setup(
     name             = 'robotframework-lint',
-    version          = __version__,
+    version          = __version__, # noqa: F821
     author           = 'Bryan Oakley',
     author_email     = 'bryan.oakley@gmail.com',
     url              = 'https://github.com/boakley/robotframework-lint/',
